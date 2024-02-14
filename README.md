@@ -8,7 +8,7 @@
 
 Языки: *JavaScript, SQL*    
 Фреймворки: *ExpressJS*    
-Технологии: *SSE*,
+Технологии: *SSE*  
 Библиотеки: *shortid, bcrypt, axios*    
 API: *REST API*    
 БД: *PostgreSQL, MongoDB*    
