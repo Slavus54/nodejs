@@ -70,7 +70,7 @@ const sse = (req, res) => {
 }
 
 http.createServer((req, res) => {
-    sse(req, res)
+    //sse(req, res)
 }).listen(process.env.PORT)
 
 app.get('/towns', async (req, res) => {
