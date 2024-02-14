@@ -1,11 +1,17 @@
+require('dotenv').config()
 const app = require('express')()
+const http = require('http')
+const cors = require('cors')
 const fs = require('fs')
 const {Client} = require('pg')
 
-const file = '/src/plain-text.txt'
-const data = require('./src/data.json')
+const file = '/api/plain-text.txt'
+const data = require('./api/data.json')
+const towns = require('./api/towns.json')
 
-const PORT = process.env.PORT || 4000
+const NODE_PORT = 4000
+
+app.use(cors())
 
 const client = new Client({
     database: 'node-test',
@@ -46,4 +52,31 @@ let result = data.filter(el => el.rating > 80)
 
 console.log(result)
 
-app.listen(PORT, () => console.log(`Node Server started on ${PORT} port`))
+// API&SSE
+
+const sse = (req, res) => {
+    res.setHeader('Content-Type', "text/html")
+    res.setHeader('Cache-Control', 'no-cache')
+    res.setHeader('Connection', 'keep-alive')
+
+    let id = 0
+    let town = ''
+
+    setInterval(() => {
+        town = towns[parseInt(towns.length * Math.random())].title
+
+        res.write(`data: some data ${town} \n`)
+        res.write(`id: ${++id} \n`)
+        res.write("\n")
+    }, 1000)
+}
+
+http.createServer((req, res) => {
+    sse(req, res)
+}).listen(process.env.PORT)
+
+app.get('/towns', async (req, res) => {
+    res.send(towns)
+})
+
+app.listen(process.env.NODE_PORT, () => console.log(`Node Server started on ${process.env.NODE_PORT} port`))

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeJS 2024</title>
+</head>
+<body>
+    <h1>NodeJS 2024 Course</h1>
+
+    <h2>SSE</h2>
+    <div id="data"></div>
+
+    <script>
+        const esource = new EventSource('http://localhost:8080')
+        const node = document.getElementById('data')
+
+        esource.onmessage = message => {
+            node.innerText = `id: ${message.lastEventId}, data: ${message.data}`
+        }
+    </script>
+</body>
+</html>
