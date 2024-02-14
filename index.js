@@ -19,13 +19,11 @@ const client = new Client({
     port: 5432
 })
 
-client.connect()
+// client.connect()
 
-client.query('Select * from student', (err, res) => {
-    let students = res.rows
-
-    // some operations with table data
-})
+// client.query('Select * from student', (err, res) => {
+//     let students = res.rows
+// })
 
 // filesystem
 
