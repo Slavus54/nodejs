@@ -9,8 +9,6 @@ const file = '/api/plain-text.txt'
 const data = require('./api/data.json')
 const towns = require('./api/towns.json')
 
-const NODE_PORT = 4000
-
 app.use(cors())
 
 const client = new Client({
