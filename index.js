@@ -9,8 +9,6 @@ const file = '/api/plain-text.txt'
 const data = require('./api/data.json')
 const towns = require('./api/towns.json')
 
-const NODE_PORT = 4000
-
 app.use(cors())
 
 const client = new Client({
@@ -71,9 +69,9 @@ const sse = (req, res) => {
     }, 1000)
 }
 
-http.createServer((req, res) => {
-    sse(req, res)
-}).listen(process.env.PORT)
+// http.createServer((req, res) => {
+//     sse(req, res)
+// }).listen(process.env.PORT)
 
 app.get('/towns', async (req, res) => {
     res.send(towns)
